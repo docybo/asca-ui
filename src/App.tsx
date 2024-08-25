@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { NetworkProvider } from './context/NetworkContext';
+import LandingPage from './pages/LandingPage';
+import ContributionsPage from './pages/ContributionsPage';
+import LoansPage from './pages/LoansPage';
+import GovernancePage from './pages/GovernancePage';
+import Dashboard from './pages/Dashboard'; // Ensure Dashboard is correctly imported
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <NetworkProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/contributions" element={<ContributionsPage />} />
+                    <Route path="/loans" element={<LoansPage />} />
+                    <Route path="/governance" element={<GovernancePage />} />
+                </Routes>
+            </Router>
+        </NetworkProvider>
+    );
 }
 
 export default App;
